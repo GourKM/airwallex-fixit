@@ -604,8 +604,11 @@ input[type=range]::-moz-range-thumb{
 }
 /* very small phones: give the slider its own full-width row so it never crowds the number field */
 @media (max-width:430px){
-  .spend-row{ flex-direction:column; align-items:stretch; gap:10px; }
-  .slider-wrap{ min-width:0; }
+  .spend-row{ flex-direction:column; align-items:stretch; gap:12px; }
+  /* in a column flex row, flex-basis becomes HEIGHT — reset it so the slider
+     sizes to its content instead of reserving a ~220px empty block */
+  .slider-wrap{ flex:0 0 auto; width:100%; min-width:0; }
+  input[type=range]{ margin-top:8px; }
 }
 </style>
 </head>
