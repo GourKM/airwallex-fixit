@@ -328,7 +328,9 @@ input[type=range]::-moz-range-thumb{
   box-shadow:var(--shadow-md);
   overflow:hidden;
 }
+.shell--filters + .shell{ margin-top:16px; }   /* tighter gap between the two stacked cards */
 .shell__bar{ padding:16px clamp(14px,3vw,22px); border-bottom:1px solid var(--line-soft); }
+.shell--filters .shell__bar{ border-bottom:0; } /* it's the only thing in the filters card */
 .shell__title-row{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
 .shell__title{ font-weight:800; font-size:1.15rem; letter-spacing:-.01em; }
 .shell__by{ font-size:.78rem; color:var(--ink-40); font-weight:600; display:inline-flex; align-items:center; gap:6px; }
@@ -440,12 +442,13 @@ input[type=range]::-moz-range-thumb{
 .thumb__shade{ position:absolute; inset:0;
   background:linear-gradient(180deg, rgba(20,23,26,.34), transparent 30%, transparent 70%, rgba(20,23,26,.16));
 }
-.thumb__badge{
-  position:absolute; top:8px; left:8px;
-  background:rgba(20,23,26,.72); color:#fff; font-family:var(--mono); font-size:.7rem; font-weight:600;
-  padding:3px 7px; border-radius:6px; display:inline-flex; align-items:center; gap:5px;
-}
-.thumb__badge svg{ width:10px; height:10px; }
+/* circular play button + duration, like AppsFlyer's creative thumbnails */
+.thumb__top{ position:absolute; top:8px; left:8px; display:inline-flex; align-items:center; gap:6px; }
+.thumb__play{ width:22px; height:22px; border-radius:50%; background:rgba(255,255,255,.92);
+  display:grid; place-items:center; box-shadow:0 1px 3px rgba(0,0,0,.28); }
+.thumb__play svg{ width:9px; height:9px; color:var(--ink); margin-left:1px; }
+.thumb__dur{ background:rgba(20,23,26,.72); color:#fff; font-family:var(--mono); font-size:.7rem;
+  font-weight:600; padding:3px 7px; border-radius:6px; }
 .thumb__chip{
   position:absolute; bottom:8px; left:8px;
   background:rgba(255,255,255,.92); color:var(--ink); font-size:.68rem; font-weight:700;
@@ -698,7 +701,8 @@ input[type=range]::-moz-range-thumb{
     </div>
 
     <!-- the product shell, styled to AppsFlyer's Creative Optimization view -->
-    <div class="shell" id="shell">
+    <!-- filters card (matches AppsFlyer's separate filter panel) -->
+    <div class="shell shell--filters">
       <div class="shell__bar">
         <div class="shell__title-row">
           <span class="shell__title">Creative Optimization</span>
@@ -713,7 +717,10 @@ input[type=range]::-moz-range-thumb{
           <span class="chip"><span class="k">Creative type</span><span class="v">Video</span><span class="x">×</span></span>
         </div>
       </div>
+    </div>
 
+    <!-- content card: chart + search/tabs + scored grid -->
+    <div class="shell" id="shell">
       <!-- channel chart + collaborative cursors -->
       <div class="panel">
         <div class="panel__head">
@@ -1118,8 +1125,9 @@ function buildCards(){
           <div class="thumb__photo" style="background-image:url('${IMG[IMG_MAP[i]]}')"></div>
           <div class="thumb__shade"></div>
         </div>
-        <span class="thumb__badge">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>${c.dur}
+        <span class="thumb__top">
+          <span class="thumb__play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="thumb__dur">${c.dur}</span>
         </span>
       </div>
       <div class="card__body">
