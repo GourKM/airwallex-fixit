@@ -255,7 +255,7 @@ input[type=range]::-moz-range-thumb{
 .range-scale{ display:flex; justify-content:space-between; font-size:.72rem; color:var(--ink-40); font-family:var(--mono); }
 
 /* readouts */
-.readout{ margin-top:24px; display:flex; flex-wrap:wrap; align-items:flex-end; gap:6px 22px; }
+.readout{ margin-top:10px; display:flex; flex-wrap:wrap; align-items:flex-end; gap:6px 22px; }
 .readout__big{
   font-family:var(--mono); font-weight:700; letter-spacing:-.02em;
   font-size:clamp(2rem, 8vw, 3.2rem); color:var(--bleed); line-height:1;
@@ -311,10 +311,6 @@ input[type=range]::-moz-range-thumb{
 }
 .bleed-caption b{ color:var(--ink-60); font-weight:700; }
 
-.scroll-cue{ display:flex; justify-content:center; margin-top:40px; }
-.scroll-cue a{ display:inline-flex; flex-direction:column; align-items:center; gap:6px; color:var(--ink-40); font-size:.78rem; font-weight:600; text-decoration:none; }
-.scroll-cue svg{ width:18px; height:18px; animation:bob 2s ease-in-out infinite; }
-@keyframes bob{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
 
 /* ============================================================================
    THE FIX  —  AppsFlyer Creative Optimization dashboard, scoring Who Are Ya?
@@ -696,12 +692,6 @@ input[type=range]::-moz-range-thumb{
         <b>2% of creative variations command 68% of ad budget</b>
         (AppsFlyer, <i>State of Creative Optimization</i>). It’s a demo estimate, not Airwallex’s actual results.
       </p>
-    </div>
-
-    <div class="scroll-cue">
-      <a href="#fix">See the fix
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-      </a>
     </div>
   </div>
 </section>
